@@ -105,6 +105,7 @@ int main(void)
     /* Uncomment the following line only when debugging proper conversion back and forth */
     // test_hashing_and_string_conversion();
 
+    const int min_number = 0;
     const int max_number = 9999;
 
     char max_number_as_string[100];
@@ -118,7 +119,9 @@ int main(void)
     char zero_padding_format_string[100];
     sprintf(zero_padding_format_string, "%s%d%s", "%0", number_of_zeroes_to_pad, "d");
 
-    for (int i = 0; i <= max_number; i++)
+    int pin_found_yet = 0;
+
+    for (int i = min_number; i <= max_number; i++)
     {
         unsigned char zero_padded_number_string[number_of_zeroes_to_pad];
         sprintf(zero_padded_number_string, zero_padding_format_string, i);
@@ -132,13 +135,22 @@ int main(void)
         if (has_matching_sha1_hash(zero_padded_number_string, sha1_hash_to_decode))
         {
             printf("Found PIN string with matching hash: \"%s\"\n", zero_padded_number_string);
+            pin_found_yet = 1;
             break;
         }
 
         if (has_matching_sha1_hash(unpadded_number_string, sha1_hash_to_decode))
         {
             printf("Found PIN string with matching hash: \"%s\"\n", unpadded_number_string);
+            pin_found_yet = 1;
             break;
         }
     }
+
+    if (!pin_found_yet)
+    {
+        fprintf(stderr, "PIN number not found, tried numbers from %d through %d.\n", min_number, max_number);
+    }
+
+    return !pin_found_yet;
 }
