@@ -91,18 +91,19 @@ int has_matching_sha1_hash(char string_to_check[], unsigned char sha1_hash_to_lo
 
 int main(void)
 {
-    // const unsigned char sha1_hash_to_decode_in_hex[SHA_DIGEST_LENGTH*2] = "b16d0ef3dd0632dcd13d135e02a097aec4044c24";
+    //const unsigned char sha1_hash_to_decode_in_hex[SHA_DIGEST_LENGTH*2] = "b16d0ef3dd0632dcd13d135e02a097aec4044c24";
     const unsigned char sha1_hash_to_decode_in_hex[SHA_DIGEST_LENGTH * 2] = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"; // "1234"
     unsigned char sha1_hash_to_decode[SHA_DIGEST_LENGTH];
     hex_string_to_sha1_hash(sha1_hash_to_decode_in_hex, sha1_hash_to_decode);
 
-    // Uncomment the following lines only when debugging proper conversion back and forth
+    /* Uncomment the following lines only when debugging proper conversion back and forth */
     // printf("The hash we're looking for: %s\n", sha1_hash_to_decode);
     // unsigned char hash_to_decode_2[SHA_DIGEST_LENGTH*2];
     // sha1_hash_to_hex_string(sha1_hash_to_decode, hash_to_decode_2);
     // printf("Or in human-readable hex form: %s\n", hash_to_decode_2);
 
-    test_hashing_and_string_conversion();
+    /* Uncomment the following line only when debugging proper conversion back and forth */
+    // test_hashing_and_string_conversion();
 
     const int max_number = 9999;
 
@@ -111,7 +112,8 @@ int main(void)
     sprintf(max_number_as_string, "%d", max_number);
 
     int number_of_zeroes_to_pad = strlen(max_number_as_string);
-    printf("Number of zeroes to pad: %d\n", number_of_zeroes_to_pad);
+    /* Uncomment the following line only when debugging proper conversion back and forth */
+    // printf("Number of zeroes to pad: %d\n", number_of_zeroes_to_pad);
 
     char zero_padding_format_string[100];
     sprintf(zero_padding_format_string, "%s%d%s", "%0", number_of_zeroes_to_pad, "d");
@@ -124,8 +126,8 @@ int main(void)
         unsigned char unpadded_number_string[number_of_zeroes_to_pad];
         sprintf(unpadded_number_string, "%d", i);
 
-        printf("PIN string: %s (%s)\n", zero_padded_number_string, unpadded_number_string);
-
+        /* Uncomment the following line only when debugging */
+        // printf("PIN string: %s (%s)\n", zero_padded_number_string, unpadded_number_string);
 
         if (has_matching_sha1_hash(zero_padded_number_string, sha1_hash_to_decode))
         {
