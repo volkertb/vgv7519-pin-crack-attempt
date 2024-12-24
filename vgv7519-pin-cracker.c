@@ -32,7 +32,7 @@ void hex_string_to_sha1_hash(unsigned char hex_hash[40], unsigned char bytearray
 
     for (i = 0; i < (str_len / 2); i++) {
         sscanf(hexstring + 2*i, "%02x", &bytearray[i]);
-        printf("bytearray %d: %02x\n", i, bytearray[i]);
+        // printf("bytearray %d: %02x\n", i, bytearray[i]); // Uncomment this only when debugging
     }
 }
 
