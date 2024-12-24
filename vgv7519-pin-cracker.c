@@ -20,10 +20,8 @@ void sha1_hash_to_hex_string(unsigned char binary_hash[SHA_DIGEST_LENGTH],
     }
 }
 
-/**(s
-in
-re
- * ode below with thanks to https://stackoverflow.com/a/13194749
+/**
+ * Code below with thanks to https://stackoverflow.com/a/13194749
  * @param hex_hash
  * @param bytearray
  */
