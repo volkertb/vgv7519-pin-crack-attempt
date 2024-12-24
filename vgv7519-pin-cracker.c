@@ -38,6 +38,16 @@ void hex_string_to_sha1_hash(unsigned char hex_hash[40], unsigned char bytearray
 
 int main(void)
 {
+    const unsigned char sha1_hash_to_decode_in_hex[SHA_DIGEST_LENGTH*2] = "b16d0ef3dd0632dcd13d135e02a097aec4044c24";
+    unsigned char sha1_hash_to_decode[SHA_DIGEST_LENGTH];
+    hex_string_to_sha1_hash(sha1_hash_to_decode_in_hex, sha1_hash_to_decode);
+
+    // Uncomment the following lines only when debugging proper conversion back and forth
+    // printf("The hash we're looking for: %s\n", sha1_hash_to_decode);
+    // unsigned char hash_to_decode_2[SHA_DIGEST_LENGTH*2];
+    // sha1_hash_to_hex_string(sha1_hash_to_decode, hash_to_decode_2);
+    // printf("Or in human-readable hex form: %s\n", hash_to_decode_2);
+
     const unsigned char data[] = "hello, world\n";
 
     size_t length = strlen(data);
